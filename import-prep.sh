@@ -5,6 +5,13 @@
 # ////////////////////////////////////////////////
 #
 
+# Import sensitive variables here. See .env.example for an example
+LOC=$(dirname $(realpath $0))
+source $LOC/.env
+
+
+cd $PROJECT_LOCATION;
+
 echo -e "Removing import bugs\n"
 
 #echo -e "Importing configuration into a fresh site fails after Basic page content type has been deleted -  https://www.drupal.org/project/drupal/issues/2923899#comment-13118780"

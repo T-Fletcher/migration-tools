@@ -10,6 +10,8 @@ LOC=$(dirname $(realpath $0))
 source $LOC/.env
 
 
+cd $PROJECT_LOCATION;
+
 echo -e "\n\nGenerating Drupal 7 migrations - to be run inside the Docker CLI container\n\n";
 
 drush migrate-upgrade --legacy-db-key=$DB_KEY --legacy-root=$SOURCE_SITE --configure-only

@@ -9,6 +9,9 @@
 LOC=$(dirname $(realpath $0))
 source $LOC/.env
 
+
+cd $PROJECT_LOCATION;
+
 echo -e "\n\nImporting Drupal 7 database - to be run inside the Docker CLI container\n\n";
 
 USAGE="import-d7.sh {mysql port} {local database} \n\n e.g. import-d7.sh $MYSQL_PORT my_d7_db.sql"

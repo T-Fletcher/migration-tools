@@ -5,6 +5,12 @@
 # ////////////////////////////
 #
 
+# Import sensitive variables here. See .env.example for an example
+LOC=$(dirname $(realpath $0))
+source $LOC/.env
+
+cd $PROJECT_LOCATION;
+
 echo -e "\n\nInstalling D8 version of Drupal 7 DVA modules with a D8 upgrade path\n\n";
 
 # Loop over the first argument, which should be a file containing the module names

@@ -9,6 +9,7 @@
 LOC=$(dirname $(realpath $0))
 source $LOC/.env
 
+cd $PROJECT_LOCATION;
 
 read -p "Reinstalling a fresh copy of Drupal 8 - the database will be overwritten!! Are you sure you want to continue? " -n 1 -r
 echo    # (optional) move to a new line
