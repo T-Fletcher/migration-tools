@@ -13,18 +13,18 @@ LIMIT=${2:-10}
 
 cd $PROJECT_LOCATION;
 
-echo -e "\n-------------------------------\nRunning a fresh migration: $MIGRATION\n"
+echo -e "\n-------------------------------\nRunning a fresh migration: $MIGRATION...\n"
 
-echo -e "Unlocking $MIGRATION"
+echo -e "\nUnlocking $MIGRATION\n"
 drush migrate-reset $MIGRATION
 
-echo -e "Rolling back any previous imported material generated from $MIGRATION..."
+echo -e "\nRolling back any previous imported material generated from $MIGRATION...\n"
 drush migrate-rollback $MIGRATION
 
-echo -e "Importing latest config changes..."
+echo -e "\nImporting latest config changes...\n"
 drush cim -y
 
-echo -e "Importing migration: $MIGRATION (defaults to 10 items, specify more with $ bash script_name migration_name count)"
+echo -e "\nImporting migration: $MIGRATION (defaults to 10 items, specify more with $ bash script_name migration_name count)...\n\n"
 drush migrate-import $MIGRATION --limit=$LIMIT
 
-echo -e "\n-------------------------------\nScript complete!\n"
+echo -e "\n-------------------------------\nImport complete. Be sure to check the results!\n"
