@@ -11,13 +11,19 @@ source $LOC/.env
 
 cd $PROJECT_LOCATION;
 
-read -p "Reinstalling a fresh copy of Drupal 8 - the database will be overwritten!! Are you sure you want to continue? " -n 1 -r
+read -p "Do you want to reinstalling a fresh copy of Drupal 8? The database will be overwritten!!" -n 1 -r
 echo    # (optional) move to a new line
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
 	echo -e "\n-------------------------------\nInstalling Drupal\n"
 	drush si -y
+	echo -e "\n-------------------------------\nDrupal installation complete\n"
+fi
 
+read -p "Do you want to set the UUID, admin details and install basic migration tools?" -n 1 -r
+echo    # (optional) move to a new line
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
 	echo -e "\nSetting UUID of site to match PROD\n"
 	drush config-set "system.site" uuid $PROD_SITE_UUID -y
 
@@ -30,7 +36,7 @@ then
 	echo -e "\nResetting Admin password\n"
 	drush upwd admin "admin"
 
-	echo -e "\n-------------------------------\nScript complete!\n"
+	echo -e "\n-------------------------------\nHelpful stuff complete!\n"
 else 
-	echo "Probably a wise choise..."
+	echo "Not much to do here then..."
 fi
