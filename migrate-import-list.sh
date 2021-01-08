@@ -20,8 +20,20 @@ file=$1
 echo -e "\n-------------------------------\nRunning migrations listed in $file\n"
 
 while read p; do
-	echo "Running $p"
+	echo -e "\n\n*****\nRunning migration: $p\n********\n\n"
+
+	echo -e "\nUnlocking $p\n"
+	drush migrate-reset "$p"
+
+	echo -e "\nRolling back any previous imported material generated from $p...\n"
+	drush migrate-rollback "$p"
+	
+	echo -e "\nImporting migration: $p...\n\n"
 	drush migrate-import "$p"
+
+	echo -e "\nOutputting migration log, if any...\n"
+	drush mmsg "$p"
+
 done < "$file"
 
 echo -e "\n-------------------------------\nMigrations complete\n"
