@@ -13,6 +13,7 @@ cd $PROJECT_LOCATION;
 
 read -p "Do you want to reinstalling a fresh copy of Drupal 8? The database will be overwritten!!" -n 1 -r
 echo    # (optional) move to a new line
+
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
 	echo -e "\n-------------------------------\nInstalling Drupal\n"
@@ -20,8 +21,9 @@ then
 	echo -e "\n-------------------------------\nDrupal installation complete\n"
 fi
 
-read -p "Do you want to set the UUID, admin details and install basic migration tools?" -n 1 -r
+read -p "Do you want to set the UUID, admin details, migration tools and Icon Agency migration dependencies?" -n 1 -r
 echo    # (optional) move to a new line
+
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
 	echo -e "\nSetting UUID of site to match PROD\n"
@@ -32,6 +34,9 @@ then
 
 	echo -e "\nInstalling Migration tools\n"
 	drush en -y migrate_tools migrate_plus migrate_upgrade
+
+	echo -e "\nInstalling Icon migration dependencies\n"
+	drush en -y media_migration field_group field_group_migrate
 
 	echo -e "\nResetting Admin password\n"
 	drush upwd admin "admin"
